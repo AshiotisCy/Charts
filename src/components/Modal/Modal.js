@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import { colors } from "../../config/ColorPalette";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Backdrop = styled(motion.div)`
   position: fixed;
-  height: 100vh;
-  width: 100vw;
+  bottom: 0;
+  right: 0;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.6);
 `;
 
 const Wrapper = styled(motion.div)`
-  position: fixed;
+  position: inherit;
   width: 300px;
   height: 300px;
   background: ${colors.offWhite};
@@ -44,16 +44,22 @@ const ModalBody = styled(motion.div)`
 `;
 
 const Modal = ({ isOpen, setIsOpen, data }) => {
+  const [isVisible, setIsVisible] = useState(false);
   return (
-    <>
+    <AnimatePresence
+      initial={false}
+      exitBeforeEnter={true}
+      onExitComplete={() => {
+        setIsVisible(!isVisible);
+      }}
+    >
       {isOpen && (
-        <>
-          <Backdrop
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.3 } }}
-            exit={{ opacity: 0, transition: { delay: 0.3 } }}
-            onClick={() => setIsOpen(false)}
-          />
+        <Backdrop
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 0.3 } }}
+          exit={{ opacity: 0, transition: { delay: 0.3 } }}
+          onClick={() => setIsOpen(false)}
+        >
           <Wrapper
             initial={{ scale: 0 }}
             animate={{ scale: 1, transition: { duration: 0.3 } }}
@@ -76,9 +82,9 @@ const Modal = ({ isOpen, setIsOpen, data }) => {
               </div>
             </ModalBody>
           </Wrapper>
-        </>
+        </Backdrop>
       )}
-    </>
+    </AnimatePresence>
   );
 };
 

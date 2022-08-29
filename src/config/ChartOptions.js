@@ -30,7 +30,6 @@ export const BarOptions = (position, display) => {
       },
     },
   };
-  console.log("options", options);
   return options;
 };
 
@@ -46,4 +45,22 @@ export const bubbleChartOptions = {
       },
     },
   },
+  maintainAspectRatio: false,
+};
+
+export const AreaChartOptions = (position) => {
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: position,
+      },
+      title: {
+        display: true,
+        text: "Line Chart",
+      },
+    },
+    maintainAspectRatio: false,
+  };
+  return options;
 };

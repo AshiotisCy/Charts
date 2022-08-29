@@ -14,6 +14,9 @@ import { data } from "../config/ChartData";
 import { BarOptions } from "../config/ChartOptions";
 import { AnimatePresence } from "framer-motion";
 import Modal from "./Modal/Modal";
+import { colors } from "../config/ColorPalette";
+import LegendComponent from "./BarChartConfigComponents/LegendComponent";
+import DisplayAxis from "./BarChartConfigComponents/DisplayAxis";
 
 ChartJS.register(
   CategoryScale,
@@ -29,15 +32,37 @@ const Outter = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
+  gap: 20px;
+`;
+
+const GraphOptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 const Inner = styled.div`
   display: flex;
   width: 80%;
+  box-shadow: 0 0.46875rem 2.1875rem rgb(0 0 0 / 3%),
+    0 0.9375rem 1.40625rem rgb(0 0 0 / 3%), 0 0.25rem 0.53125rem rgb(0 0 0 / 5%),
+    0 0.125rem 0.1875rem rgb(0 0 0 / 3%);
+
+  canvas {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid ${colors.orange};
+    box-shadow: 0 0.46875rem 2.1875rem rgb(0 0 0 / 3%),
+      0 0.9375rem 1.40625rem rgb(0 0 0 / 3%),
+      0 0.25rem 0.53125rem rgb(0 0 0 / 5%), 0 0.125rem 0.1875rem rgb(0 0 0 / 3%);
+  }
 `;
 
 export default function BarChart() {
   const [isOpen, setIsOpen] = useState(false);
+  const [legend, setLegend] = useState("top");
+  const [isAxisEnabled, setIsAxisEnabled] = useState(false);
 
   const [modalData, setModalData] = useState({
     datasetLabel: "",
@@ -58,24 +83,23 @@ export default function BarChart() {
     if (eventData) {
       setIsOpen(true);
     }
+    console.log("clicked");
   };
-
-  const [legend, setLegend] = useState("top");
 
   return (
     <Outter>
-      <div>
-        <div>Legend</div>
-        <button onClick={() => setLegend("top")}>Top</button>
-        <button onClick={() => setLegend("right")}>Right</button>
-        <button onClick={() => setLegend("bottom")}>Bottom</button>
-        <button onClick={() => setLegend("left")}>Left</button>
-      </div>
+      <GraphOptions>
+        <LegendComponent setLegend={setLegend} />
+        <DisplayAxis
+          isAxisEnabled={isAxisEnabled}
+          setIsAxisEnabled={setIsAxisEnabled}
+        />
+      </GraphOptions>
       <Inner>
         <Bar
           onClick={onClick}
           ref={chartRef}
-          options={BarOptions(legend)}
+          options={BarOptions(legend, isAxisEnabled)}
           data={data}
           key="data"
         />

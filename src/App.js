@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background: ${colors.offWhite};
 `;
 
 const Header = styled.div`
@@ -31,9 +32,9 @@ const LinksWrapper = styled.div`
 
 const Body = styled.div`
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 105px);
 `;
 
 const Button = styled.div`
@@ -41,6 +42,10 @@ const Button = styled.div`
   border: 1px solid transparent;
   border-radius: 5px;
   background-color: ${colors.offWhite};
+  background-image: ${({ bgImg }) => bgImg};
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+  background-position: 10px 50%;
   color: ${colors.black};
   padding: 20px;
   justify-content: center;
@@ -74,9 +79,11 @@ export default function App() {
           {ButtonData.map((btn, idx) => (
             <NavLink to={btn.to} key={btn.id}>
               <Button
+                bgImg={`url(${btn.img})`}
                 className={isActive === idx && "isActive"}
                 onClick={() => setIsActive(idx)}
               >
+                {/* <img width="20px" src={btn.img} alt="bar" /> */}
                 {btn.name}
               </Button>
             </NavLink>
