@@ -17,6 +17,7 @@ import Modal from "./Modal/Modal";
 import { colors } from "../config/ColorPalette";
 import LegendComponent from "./BarChartConfigComponents/LegendComponent";
 import DisplayAxis from "./BarChartConfigComponents/DisplayAxis";
+import { BoxShadow } from "../config/boxShadow";
 
 ChartJS.register(
   CategoryScale,
@@ -45,17 +46,12 @@ const GraphOptions = styled.div`
 const Inner = styled.div`
   display: flex;
   width: 80%;
-  box-shadow: 0 0.46875rem 2.1875rem rgb(0 0 0 / 3%),
-    0 0.9375rem 1.40625rem rgb(0 0 0 / 3%), 0 0.25rem 0.53125rem rgb(0 0 0 / 5%),
-    0 0.125rem 0.1875rem rgb(0 0 0 / 3%);
-
+  box-shadow: ${BoxShadow};
   canvas {
     padding: 10px;
     border-radius: 5px;
     border: 2px solid ${colors.orange};
-    box-shadow: 0 0.46875rem 2.1875rem rgb(0 0 0 / 3%),
-      0 0.9375rem 1.40625rem rgb(0 0 0 / 3%),
-      0 0.25rem 0.53125rem rgb(0 0 0 / 5%), 0 0.125rem 0.1875rem rgb(0 0 0 / 3%);
+    box-shadow: ${BoxShadow};
   }
 `;
 

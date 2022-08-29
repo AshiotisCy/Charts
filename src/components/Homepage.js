@@ -5,6 +5,7 @@ import PolarChart from "./PolarChart";
 import DoughnutChart from "./DoughnutChart";
 import BarChart from "./BarChart";
 import BubbleChart from "./BubbleChart";
+import { BoxShadow } from "../config/boxShadow";
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,9 +31,7 @@ const Chart = styled.div`
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  box-shadow: 0 0.46875rem 2.1875rem rgb(0 0 0 / 3%),
-    0 0.9375rem 1.40625rem rgb(0 0 0 / 3%), 0 0.25rem 0.53125rem rgb(0 0 0 / 5%),
-    0 0.125rem 0.1875rem rgb(0 0 0 / 3%);
+  box-shadow: ${BoxShadow};
   background-color: white;
   border-radius: 5px;
 
@@ -55,7 +54,7 @@ const Homepage = () => {
           <BarChart />
         </Chart>
         <Chart className="medium">
-          <PolarChart />
+          <PolarChart showLegendOptions={false} innerWidth="100%" />
         </Chart>
         <Chart className="medium">
           <DoughnutChart />
