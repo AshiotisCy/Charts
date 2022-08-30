@@ -15,8 +15,8 @@ import { BarOptions } from "../config/ChartOptions";
 import { AnimatePresence } from "framer-motion";
 import Modal from "./Modal/Modal";
 import { colors } from "../config/ColorPalette";
-import LegendComponent from "./BarChartConfigComponents/LegendComponent";
-import DisplayAxis from "./BarChartConfigComponents/DisplayAxis";
+import LegendComponent from "./ChartConfigComponents/LegendComponent";
+import DisplayAxis from "./ChartConfigComponents/DisplayAxis";
 import { BoxShadow } from "../config/boxShadow";
 
 ChartJS.register(
@@ -85,7 +85,7 @@ export default function BarChart() {
   return (
     <Outter>
       <GraphOptions>
-        <LegendComponent setLegend={setLegend} />
+        <LegendComponent legend={legend} setLegend={setLegend} />
         <DisplayAxis
           isAxisEnabled={isAxisEnabled}
           setIsAxisEnabled={setIsAxisEnabled}

@@ -15,8 +15,8 @@ import {
 import { Line } from "react-chartjs-2";
 import { AreaChartOptions } from "../config/ChartOptions";
 import { AreaChartData } from "../config/ChartData";
-import LegendComponent from "./BarChartConfigComponents/LegendComponent";
-import FillChart from "./BarChartConfigComponents/FillChart";
+import LegendComponent from "./ChartConfigComponents/LegendComponent";
+import FillChart from "./ChartConfigComponents/FillChart";
 import { BoxShadow } from "../config/boxShadow";
 
 ChartJS.register(
@@ -64,7 +64,7 @@ const AreaChart = () => {
   return (
     <Wrapper>
       <GraphOptions>
-        <LegendComponent setLegend={setLegend} />
+        <LegendComponent legend={legend} setLegend={setLegend} />
         <FillChart
           fillDs1={fillDs1}
           fillDs2={fillDs2}

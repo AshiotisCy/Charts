@@ -64,3 +64,25 @@ export const AreaChartOptions = (position) => {
   };
   return options;
 };
+
+export const PolarOptions = (position, display) => {
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: position,
+      },
+      title: {
+        display: true,
+        text: "Polar Chart",
+      },
+    },
+
+    animation: {
+      animateRotate: true,
+    },
+    borderColor: display ? "black" : "transparent",
+  };
+  return options;
+};

@@ -59,6 +59,12 @@ const LegendTopBottom = styled.div`
     border: 2px solid ${colors.orange};
     color: ${colors.black};
   }
+
+  &.active {
+    background-color: ${colors.offWhite};
+    border: 2px solid ${colors.orange};
+    color: ${colors.black};
+  }
 `;
 
 const LegendButtonLeftRight = styled.div`
@@ -87,29 +93,47 @@ const LegendLeftRight = styled.div`
     border: 2px solid ${colors.offNavyBlue};
     color: ${colors.black};
   }
+
+  &.active {
+    background-color: ${colors.offWhite};
+    border: 2px solid ${colors.offNavyBlue};
+    color: ${colors.black};
+  }
 `;
 
-const LegendComponent = ({ setLegend }) => {
+const LegendComponent = ({ legend, setLegend }) => {
   return (
     <LegendWrapper>
       <LegendOuter>
         <LegendTitle>Modily Legend: </LegendTitle>
         <LegendInner>
           <LegendButtonTopBottom>
-            <LegendTopBottom onClick={() => setLegend("top")}>
+            <LegendTopBottom
+              className={legend === "top" && "active"}
+              onClick={() => setLegend("top")}
+            >
               Top
             </LegendTopBottom>
           </LegendButtonTopBottom>
           <LegendButtonLeftRight>
-            <LegendLeftRight onClick={() => setLegend("left")}>
+            <LegendLeftRight
+              className={legend === "left" && "active"}
+              onClick={() => setLegend("left")}
+            >
               Left
             </LegendLeftRight>
-            <LegendLeftRight onClick={() => setLegend("right")}>
+            <LegendLeftRight
+              className={legend === "right" && "active"}
+              onClick={() => setLegend("right")}
+            >
               Right
             </LegendLeftRight>
           </LegendButtonLeftRight>
           <LegendButtonTopBottom>
-            <LegendTopBottom onClick={() => setLegend("bottom")}>
+            <LegendTopBottom
+              className={legend === "bottom" && "active"}
+              onClick={() => setLegend("bottom")}
+            >
               Bottom
             </LegendTopBottom>
           </LegendButtonTopBottom>
